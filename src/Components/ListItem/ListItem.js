@@ -1,11 +1,14 @@
 import React from "react";
+import moment from "moment";
 
-const ListItem = ({ name, description, createdDate }) => {
+const ListItem = ({ todo, deleteTodo, updateTodo }) => {
   return (
     <div>
-      <p>{name}</p>
-      <p>{description}</p>
-      <p>{createdDate}</p>
+      <p>{todo.name}</p>
+      <p>{todo.description}</p>
+      <p>{moment(todo.createdDate).calendar()}</p>
+      <button onClick={() => deleteTodo(todo)}>Delete</button>
+      <button onClick={() => updateTodo(todo)}>Update</button>
     </div>
   );
 };

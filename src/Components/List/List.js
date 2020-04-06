@@ -1,25 +1,18 @@
 import React from "react";
 import ListItem from "../ListItem/ListItem";
 
-//dummy data
-let items = [];
-for (let i = 0; i < 3; i++) {
-  items.push({
-    name: `Item Number ${i}`,
-    description: `This is the description this is the desc this is ${i}`,
-    createdDate: new Date().toLocaleDateString(),
-  });
-}
-
-const List = () => {
+const List = ({ todos, addTodo, deleteTodo, updateTodo }) => {
   return (
     <div>
-      {items.map((item) => (
+      <div>
+        <button onClick={() => addTodo("Task Name", "Task Desc.")}>Add</button>
+      </div>
+      {todos.map((todo) => (
         <ListItem
-          key={item.name}
-          name={item.name}
-          description={item.description}
-          createdDate={item.createdDate}
+          key={todo.id}
+          todo={todo}
+          deleteTodo={deleteTodo}
+          updateTodo={updateTodo}
         />
       ))}
     </div>
