@@ -1,40 +1,33 @@
 import React, { useState } from "react";
 import List from "../List/List";
 import PlaybackControls from "../PlaybackControls/PlaybackControls";
-import { v4 as uuidv4 } from "uuid";
+
 import "./App.scss";
 
 const App = () => {
-  let [todos, setTodos] = useState([]);
-  let [userActions, setUserActions] = useState([]);
-  let [isRecording, setRecording] = useState(false);
-  let [isPlaying, setPlaying] = useState(false);
+  const [todos, setTodos] = useState([]);
+  const [userActions, setUserActions] = useState([]);
+  const [isRecording, setRecording] = useState(false);
 
-  const createTodo = (name, description) => {
-    const newTodo = {
-      id: uuidv4(),
-      name,
-      description,
-      createdDate: new Date(),
-    };
-    setTodos([...todos, newTodo]);
+  const createTodo = (newTodo) => {
+    setTodos((todos) => [...todos, newTodo]);
     handleUserAction("CREATE", newTodo);
   };
 
   const deleteTodo = (todoToBeDeleted) => {
     handleUserAction("DELETE", todoToBeDeleted);
-    setTodos(todos.filter((todo) => todo.id != todoToBeDeleted.id));
+    setTodos((todos) => todos.filter((todo) => todo.id != todoToBeDeleted.id));
   };
 
   const updateTodo = (todoToBeUpdated) => {
     handleUserAction("UPDATE", todoToBeUpdated);
-    setTodos(
+    setTodos((todos) =>
       todos.map((todo) =>
         todo.id == todoToBeUpdated.id
           ? {
               ...todo,
               name: todoToBeUpdated.name,
-              description: "jbhbjvjhv",
+              description: todoToBeUpdated.description,
             }
           : todo
       )
@@ -42,7 +35,7 @@ const App = () => {
   };
 
   const handleUserAction = (action, todo) => {
-    isRecording ? null : setUserActions([...userActions, { action, todo }]);
+    isRecording ? setUserActions([...userActions, { action, todo }]) : {};
   };
 
   const toggleRecord = () => {
@@ -50,11 +43,35 @@ const App = () => {
   };
 
   const togglePlay = () => {
-    setPlaying(!isPlaying);
+    setTodos([]);
+    setRecording(false);
+    executePlayback();
   };
 
   const clearRecording = () => {
     setUserActions([]);
+  };
+
+  const executePlayback = () => {
+    let i = 0;
+    let playbackInterval = setInterval(() => {
+      switch (userActions[i].action) {
+        case "CREATE":
+          createTodo(userActions[i].todo);
+          break;
+        case "DELETE":
+          deleteTodo(userActions[i].todo);
+          break;
+        case "UPDATE":
+          updateTodo(userActions[i].todo);
+          break;
+      }
+      i++;
+      if (i == userActions.length) {
+        clearInterval(playbackInterval);
+        setUserActions([]);
+      }
+    }, 1000);
   };
 
   return (
@@ -69,7 +86,7 @@ const App = () => {
       />
       <List
         todos={todos}
-        addTodo={createTodo}
+        createTodo={createTodo}
         deleteTodo={deleteTodo}
         updateTodo={updateTodo}
       />

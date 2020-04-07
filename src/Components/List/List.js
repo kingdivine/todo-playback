@@ -1,11 +1,21 @@
 import React from "react";
 import ListItem from "../ListItem/ListItem";
+import { v4 as uuidv4 } from "uuid";
 
-const List = ({ todos, addTodo, deleteTodo, updateTodo }) => {
+const List = ({ todos, createTodo, deleteTodo, updateTodo }) => {
+  const handleClickAdd = () => {
+    const newTodo = {
+      id: uuidv4(),
+      name: uuidv4(),
+      description: "Task description",
+      createdDate: new Date(),
+    };
+    createTodo(newTodo);
+  };
   return (
     <div>
       <div>
-        <button onClick={() => addTodo("Task Name", "Task Desc.")}>Add</button>
+        <button onClick={handleClickAdd}>Add</button>
       </div>
       {todos.map((todo) => (
         <ListItem
