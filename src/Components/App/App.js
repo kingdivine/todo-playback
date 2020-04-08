@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import List from "../List/List";
 import PlaybackControls from "../PlaybackControls/PlaybackControls";
 
@@ -6,9 +6,15 @@ import "./App.scss";
 
 const App = () => {
   const [todos, setTodos] = useState([]);
-  const [userActions, setUserActions] = useState([]);
+  const storedActions =
+    JSON.parse(window.localStorage.getItem("userActions")) || [];
+  const [userActions, setUserActions] = useState(storedActions);
   const [isRecording, setRecording] = useState(false);
   const [isPlaying, setPlaying] = useState(false);
+
+  useEffect(() => {
+    window.localStorage.setItem("userActions", JSON.stringify(userActions));
+  });
 
   const createTodo = (newTodo) => {
     setTodos((todos) => [...todos, newTodo]);
@@ -40,9 +46,6 @@ const App = () => {
   };
 
   const toggleRecord = () => {
-    if (!isRecording) {
-      setTodos([]);
-    }
     setRecording(!isRecording);
   };
 
