@@ -1,0 +1,10 @@
+@import "../../styles/variables";
+
+.list-items-container {
+  width: 50%;
+  margin: auto;
+}
+
+.empty-list-message {
+  font-family: $primary-font;
+}

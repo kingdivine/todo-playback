@@ -75,9 +75,9 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="app-container">
       <div>
-        <h1>TODO PLAYBLACK</h1>
+        <h1>TODO PLAYBACK</h1>
       </div>
       <PlaybackControls
         toggleRecord={toggleRecord}

@@ -1,5 +1,15 @@
-@import "../../styles/colors";
+@import "../../styles/variables";
 
 h1 {
   color: $header-color;
+  font-size: 32px;
+  font-family: "Lucida Console", Monaco, monospace;
+}
+
+body {
+  font-family: $primary-font;
+}
+
+.app-container {
+  text-align: center;
 }
