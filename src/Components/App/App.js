@@ -8,6 +8,7 @@ const App = () => {
   const [todos, setTodos] = useState([]);
   const [userActions, setUserActions] = useState([]);
   const [isRecording, setRecording] = useState(false);
+  const [isPlaying, setPlaying] = useState(false);
 
   const createTodo = (newTodo) => {
     setTodos((todos) => [...todos, newTodo]);
@@ -39,10 +40,17 @@ const App = () => {
   };
 
   const toggleRecord = () => {
+    if (!isRecording) {
+      setTodos([]);
+    }
     setRecording(!isRecording);
   };
 
   const togglePlay = () => {
+    if (userActions.length === 0) {
+      return;
+    }
+    setPlaying(true);
     setTodos([]);
     setRecording(false);
     executePlayback();
@@ -70,6 +78,7 @@ const App = () => {
       if (i == userActions.length) {
         clearInterval(playbackInterval);
         setUserActions([]);
+        setPlaying(false);
       }
     }, 1000);
   };
@@ -83,6 +92,8 @@ const App = () => {
         toggleRecord={toggleRecord}
         togglePlay={togglePlay}
         clearRecording={clearRecording}
+        isRecording={isRecording}
+        isPlaying={isPlaying}
       />
       <List
         todos={todos}
