@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./PlaybackControls.scss";
+
 const PlaybackControls = ({
   toggleRecord,
   togglePlay,
@@ -9,13 +11,15 @@ const PlaybackControls = ({
 }) => {
   return (
     <div>
-      <button onClick={toggleRecord}>
+      <button className="record-btn" onClick={toggleRecord}>
         {isRecording ? "Stop Recording" : "Record"}
       </button>
-      <button disabled={isPlaying} onClick={togglePlay}>
+      <button className="play-btn" disabled={isPlaying} onClick={togglePlay}>
         Play
       </button>
-      <button onClick={clearRecording}>Clear</button>
+      <button className="clear-btn" onClick={clearRecording}>
+        Clear
+      </button>
     </div>
   );
 };

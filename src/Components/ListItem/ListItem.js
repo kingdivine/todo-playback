@@ -9,8 +9,12 @@ const ListItem = ({ todo, deleteTodo, editTodo }) => {
       <p className="item-name">{todo.name}</p>
       <p className="item-description">{todo.description}</p>
       <p className="item-date">{moment(todo.createdDate).calendar()}</p>
-      <button onClick={() => deleteTodo(todo)}>Delete</button>
-      <button onClick={() => editTodo(todo)}>Edit</button>
+      <button className="delete-btn" onClick={() => deleteTodo(todo)}>
+        Delete
+      </button>
+      <button className="edit-btn" onClick={() => editTodo(todo)}>
+        Edit
+      </button>
     </div>
   );
 };

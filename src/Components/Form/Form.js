@@ -17,7 +17,7 @@ const Form = ({ todo, handleSave }) => {
   };
 
   const handleSaveClick = () => {
-    handleSave(todo ? todo : null, name, description);
+    handleSave(todo ? todo : null, name.trim(), description.trim());
   };
 
   return (
@@ -34,15 +34,18 @@ const Form = ({ todo, handleSave }) => {
       <div>
         <textarea
           value={description}
-          placeholder="Description..."
+          placeholder="Enter task description..."
           maxLength="140"
-          cols="20"
-          rows="5"
+          rows="10"
           onChange={(e) => handleDescriptionInputKeyPress(e)}
         ></textarea>
       </div>
       <div>
-        <button disabled={name.length === 0} onClick={handleSaveClick}>
+        <button
+          className="save-btn"
+          disabled={name.trim() === ""}
+          onClick={handleSaveClick}
+        >
           Save
         </button>
       </div>

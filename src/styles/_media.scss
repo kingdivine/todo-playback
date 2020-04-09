@@ -1,0 +1,20 @@
+@mixin phone-screen {
+  @media (max-width: 650px) {
+    @content;
+  }
+}
+@mixin tablet-screen {
+  @media (min-width: 651px) {
+    @content;
+  }
+}
+@mixin desktop-screen {
+  @media (min-width: 900px) {
+    @content;
+  }
+}
+@mixin ultrawide-screen {
+  @media (min-width: 1500px) {
+    @content;
+  }
+}

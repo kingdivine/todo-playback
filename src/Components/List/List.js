@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ListItem from "../ListItem/ListItem";
 import { v4 as uuidv4 } from "uuid";
 import Form from "../Form/Form";
+import { generateRandomMessage } from "../../helpers/messageGenerator";
 
 import "./List.scss";
 
@@ -44,7 +45,9 @@ const List = ({ todos, createTodo, deleteTodo, updateTodo }) => {
       {listVisible ? (
         <div className="list-items-container">
           <div>
-            <button onClick={handleClickAdd}>Add Todo</button>
+            <button className="add-btn" onClick={handleClickAdd}>
+              Add Todo
+            </button>
           </div>
           {todos.length > 0 ? (
             todos.map((todo) => (
@@ -56,7 +59,7 @@ const List = ({ todos, createTodo, deleteTodo, updateTodo }) => {
               />
             ))
           ) : (
-            <h3 className="empty-list-message"> No todos to display!</h3>
+            <h3 className="empty-list-message"> {generateRandomMessage()}</h3>
           )}
         </div>
       ) : (

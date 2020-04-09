@@ -1,7 +1,22 @@
+@import "../../styles/media";
+
 .list-item {
-  box-shadow: 0 2px 4px #d9d9d9;
-  margin: 30px 0 30px 0;
+  box-shadow: 1px 1px 1px 2px #d9d9d9;
+  margin: 8px auto;
+
   padding: 5px;
+  @include phone-screen {
+    width: 90%;
+  }
+  @include tablet-screen {
+    width: 70%;
+  }
+  @include desktop-screen {
+    width: 60%;
+  }
+  @include ultrawide-screen {
+    width: 50%;
+  }
 }
 
 .item-name {
@@ -17,4 +32,12 @@
 .item-date {
   color: #737373;
   font-size: 12px;
+}
+
+.delete-btn {
+  color: #c91d14;
+}
+
+.edit-btn {
+  color: #6922c7;
 }
