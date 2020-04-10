@@ -2,24 +2,17 @@
 
 React todo-list SPA with ability to record and playback user actions.
 
-##### Live demo
+#### Live demo
 
-Live demo can be viewed here [here](https://todo-playback.netlify.com)
+Live demo can be viewed [here](https://todo-playback.netlify.com)
 
-##### Run locally
+#### Run locally
 
-To run locally, clone this repo and run the following commands:
+To run locally, clone this repo and run `npm install`.
+Double check everything is installed and working properly by running `npm test`.
+Finally run `npm start` and navigate to localhost:8080 in browser.
 
-```
-npm install
-npm start
-```
-
-To check everything is installed and working properly run `npm test`.
-
-Navigate to localhost:8080 in browser.
-
-##### Suggested contributions/future features
+#### Suggested contributions/future features
 
 - Sorting and filtering
   - Ability to categorise and filter todo items.
