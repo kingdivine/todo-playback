@@ -103,7 +103,6 @@ const App = () => {
         createTodo={createTodo}
         deleteTodo={deleteTodo}
         updateTodo={updateTodo}
-        isPlaying={isPlaying}
       />
     </div>
   );
